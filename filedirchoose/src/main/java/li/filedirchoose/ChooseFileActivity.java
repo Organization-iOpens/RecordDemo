@@ -23,9 +23,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -33,6 +30,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -118,8 +119,9 @@ public class ChooseFileActivity extends Activity {
                 super.run();
                 File file = new File(mPath);
                 File[] listFiles = file.listFiles();//获取子文件
-                for (File f : listFiles
-                        ) {
+                Log.d("ZWW", "loadDataFrompATH() listFiles " + listFiles);
+                if(listFiles == null) return;
+                for (File f : listFiles) {
                     if (!f.isDirectory() || f.getName().startsWith(".")) {//如果不是路径或者以 . 开头的文件夹 则直接跳过
                         continue;
                     }

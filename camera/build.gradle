@@ -1,23 +1,19 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+}
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
     resourcePrefix "record_"
-    lintOptions {
-        abortOnError false
-    }
-
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 26
-
-
+        minSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -26,30 +22,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.android.support:support-v13:version_of_library'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v13:26.1.0'
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
-//apply plugin: 'com.novoda.bintray-release'//添加
-//def siteUrl = 'https://github.com/zw21544182/RecordDemo'
-//publish {
-//    repoName = 'ZhongWangMaven'//远程仓库名字,不指明，默认是上传到maven
-//    userOrg = 'zw21544182'//bintray.com的用户名
-//    groupId = 'li.camera'//项目包名
-//    artifactId = 'CamearHelp'//在Jfrog上新建项目名称（包名，不是仓库名）
-//    publishVersion = '1.0.1'//在Jfrog上新建时的版本号
-//    desc = '基于camear2拍照'//描述，不重要
-//    website = siteUrl//项目主页
-//}
-//tasks.withType(Javadoc) {//防止编码问题
-//    options.addStringOption('Xdoclint:none', '-quiet')
-//    options.addStringOption('encoding', 'UTF-8')
-//    options.addStringOption('charSet', 'UTF-8')
-//}
